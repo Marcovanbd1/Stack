@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Neighbourhood Health Stack — Mark Winterburn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0f0e0c;
+    --paper: #f5f2ec;
+    --paper-dark: #ede9e1;
+    --rule: rgba(15,14,12,0.12);
+    --accent: #1a3a2a;
+    --accent-mid: #2d5a40;
+    --accent-light: #e8f0eb;
+    --layer-0: #2c2c2a;
+    --layer-1: #1a3a2a;
+    --layer-2: #1a2d4a;
+    --layer-3: #3a1a4a;
+    --layer-4: #4a1a1a;
+    --serif: 'Libre Baskerville', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  .masthead {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px 60px;
+    position: relative;
+    border-bottom: 1px solid var(--rule);
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .masthead::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 39px,
+      rgba(245,242,236,0.04) 39px,
+      rgba(245,242,236,0.04) 40px
+    );
+    pointer-events: none;
+  }
+
+  .masthead-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,242,236,0.45);
+    margin-bottom: 48px;
+  }
+
+  .masthead-title {
+    font-family: var(--serif);
+    font-size: clamp(44px, 8vw, 96px);
+    font-weight: 700;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    max-width: 820px;
+    margin-bottom: 48px;
+  }
+
+  .masthead-title em {
+    font-style: italic;
+    color: rgba(245,242,236,0.55);
+  }
+
+  .masthead-body {
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 540px;
+    color: rgba(245,242,236,0.7);
+    margin-bottom: 64px;
+  }
+
+  .masthead-meta {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: rgba(245,242,236,0.35);
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .masthead-meta span { white-space: nowrap; }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 40px;
+    left: 60px;
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(245,242,236,0.3);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .scroll-cue::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: rgba(245,242,236,0.3);
+  }
+
+  /* ── PROSE SECTIONS ── */
+  .section {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 80px 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section-label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(15,14,12,0.35);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+    max-width: 120px;
+  }
+
+  .section h2 {
+    font-family: var(--serif);
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 28px;
+  }
+
+  .section p {
+    color: rgba(15,14,12,0.78);
+    margin-bottom: 20px;
+    font-size: 17px;
+  }
+
+  .section p:last-child { margin-bottom: 0; }
+
+  .pull-quote {
+    font-family: var(--serif);
+    font-size: clamp(20px, 3vw, 26px);
+    font-style: italic;
+    line-height: 1.45;
+    color: var(--accent);
+    border-left: 3px solid var(--accent);
+    padding: 8px 0 8px 28px;
+    margin: 40px 0;
+  }
+
+  /* ── STACK VISUAL ── */
+  .stack-section {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 80px 40px;
+  }
+
+  .stack-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .stack-header {
+    margin-bottom: 64px;
+  }
+
+  .stack-header .section-label {
+    color: rgba(245,242,236,0.3);
+  }
+  .stack-header .section-label::after { background: rgba(245,242,236,0.1); }
+
+  .stack-header h2 {
+    font-family: var(--serif);
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 700;
+    color: var(--paper);
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  .stack-header p {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(245,242,236,0.55);
+    max-width: 480px;
+  }
+
+  .ea-spine-wrapper {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 0;
+    align-items: stretch;
+  }
+
+  .ea-spine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 8px;
+  }
+
+  .ea-spine-line {
+    width: 1px;
+    flex: 1;
+    background: linear-gradient(to bottom, rgba(245,242,236,0.08), rgba(245,242,236,0.25), rgba(245,242,236,0.08));
+  }
+
+  .ea-label {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(245,242,236,0.2);
+    margin: 12px 0;
+    white-space: nowrap;
+  }
+
+  .layers {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .layer {
+    display: grid;
+    grid-template-columns: 52px 1fr auto;
+    align-items: center;
+    gap: 24px;
+    padding: 24px 28px 24px 0;
+    border-bottom: 1px solid rgba(245,242,236,0.06);
+    cursor: pointer;
+    transition: background 0.2s;
+    border-radius: 4px;
+    position: relative;
+  }
+
+  .layer:hover { background: rgba(245,242,236,0.04); }
+
+  .layer:last-child { border-bottom: none; }
+
+  .layer-num {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 700;
+    color: rgba(245,242,236,0.15);
+    text-align: center;
+    line-height: 1;
+  }
+
+  .layer-content {}
+
+  .layer-category {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .layer-name {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--paper);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
+  .layer-desc {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(245,242,236,0.45);
+    line-height: 1.5;
+  }
+
+  .layer-status {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 100px;
+    white-space: nowrap;
+    align-self: flex-start;
+    margin-top: 4px;
+  }
+
+  .status-live    { background: rgba(45,90,64,0.4);  color: #7ec99a; border: 1px solid rgba(126,201,154,0.2); }
+  .status-sel     { background: rgba(26,45,74,0.4);  color: #7aabdc; border: 1px solid rgba(122,171,220,0.2); }
+  .status-pilot   { background: rgba(58,26,74,0.4);  color: #c49fe0; border: 1px solid rgba(196,159,224,0.2); }
+  .status-dev     { background: rgba(74,26,26,0.4);  color: #e0958a; border: 1px solid rgba(224,149,138,0.2); }
+  .status-class   { background: rgba(60,50,20,0.4);  color: #d4b96a; border: 1px solid rgba(212,185,106,0.2); }
+
+  .l0-cat { color: rgba(180,175,160,0.7); }
+  .l1-cat { color: #7ec99a; }
+  .l2-cat { color: #7aabdc; }
+  .l3-cat { color: #c49fe0; }
+  .l4-cat { color: #e0958a; }
+
+  /* Layer detail panels */
+  .layer-detail {
+    display: none;
+    grid-column: 1 / -1;
+    padding: 20px 0 12px 76px;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(245,242,236,0.55);
+    line-height: 1.7;
+    border-top: 1px solid rgba(245,242,236,0.05);
+    margin-top: 16px;
+  }
+
+  .layer-detail.open { display: block; }
+
+  .layer-detail ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .layer-detail ul li {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border: 1px solid rgba(245,242,236,0.12);
+    border-radius: 100px;
+    color: rgba(245,242,236,0.4);
+  }
+
+  /* ── EA SECTION ── */
+  .ea-section {
+    background: #f0ece3;
+  }
+
+  .ea-dims {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    margin-top: 48px;
+    border: 1px solid var(--rule);
+  }
+
+  .ea-dim {
+    background: var(--paper);
+    padding: 28px;
+  }
+
+  .ea-dim-num {
+    font-family: var(--serif);
+    font-size: 11px;
+    color: rgba(15,14,12,0.25);
+    margin-bottom: 8px;
+  }
+
+  .ea-dim-name {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--accent);
+  }
+
+  .ea-dim-desc {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(15,14,12,0.6);
+    line-height: 1.6;
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--paper-dark);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 48px 40px;
+  }
+
+  .stats-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 40px;
+  }
+
+  .stat {}
+
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(15,14,12,0.45);
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── ABOUT / COLAB ── */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-top: 48px;
+  }
+
+  .team-member {
+    background: var(--paper);
+    padding: 28px;
+  }
+
+  .team-role {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(15,14,12,0.35);
+    margin-bottom: 6px;
+  }
+
+  .team-name {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .team-detail {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(15,14,12,0.5);
+    line-height: 1.5;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 100px 40px;
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    font-family: var(--serif);
+    font-size: clamp(30px, 5vw, 52px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    max-width: 640px;
+    margin: 0 auto 24px;
+  }
+
+  .cta-section h2 em {
+    font-style: italic;
+    color: rgba(245,242,236,0.45);
+  }
+
+  .cta-body {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(245,242,236,0.55);
+    max-width: 480px;
+    margin: 0 auto 56px;
+    line-height: 1.7;
+  }
+
+  .cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 64px;
+  }
+
+  .btn {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 16px 32px;
+    border-radius: 2px;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary {
+    background: var(--paper);
+    color: var(--ink);
+  }
+  .btn-primary:hover { background: #d8d3c8; }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--paper);
+    border: 1px solid rgba(245,242,236,0.25);
+  }
+  .btn-secondary:hover { border-color: rgba(245,242,236,0.6); }
+
+  .cta-contact {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: rgba(245,242,236,0.3);
+    line-height: 2;
+  }
+
+  .cta-contact a {
+    color: rgba(245,242,236,0.55);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(245,242,236,0.2);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .cta-contact a:hover { color: var(--paper); border-color: rgba(245,242,236,0.6); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 32px 40px;
+    border-top: 1px solid var(--rule);
+    background: var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  footer span {
+    font-family: var(--sans);
+    font-size: 11px;
+    color: rgba(245,242,236,0.2);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .masthead-eyebrow { animation: fadeUp 0.7s ease both; }
+  .masthead-title   { animation: fadeUp 0.7s 0.15s ease both; }
+  .masthead-body    { animation: fadeUp 0.7s 0.3s ease both; }
+  .masthead-meta    { animation: fadeUp 0.7s 0.45s ease both; }
+  .scroll-cue       { animation: fadeUp 0.7s 0.6s ease both; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .masthead { padding: 60px 28px 48px; }
+    .scroll-cue { left: 28px; }
+    .section { padding: 60px 24px; }
+    .layer { grid-template-columns: 40px 1fr; gap: 16px; }
+    .layer-status { display: none; }
+    .layer-detail { padding-left: 56px; }
+    .stats-inner { grid-template-columns: 1fr 1fr; }
+    footer { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── MASTHEAD ── -->
+<header class="masthead">
+  <div class="masthead-eyebrow"><a href="https://neighbourhoodcolab.netlify.app" target="_blank" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(245,242,236,0.2);">Neighbourhood CoLab CIC</a> · Isle of Portland, Dorset</div>
+  <h1 class="masthead-title">The Neighbourhood<br>Health <em>Stack</em></h1>
+  <p class="masthead-body">A structured account of what neighbourhood health infrastructure actually looks like when it is built from first principles, layer by layer, inside a real NHS place.</p>
+  <div class="masthead-meta">
+    <span>Weymouth &amp; Portland PCN</span>
+    <span>77,000 patients</span>
+    <span>One of 43 NNHIP places nationally</span>
+    <span>March 2026</span>
+  </div>
+  <div class="scroll-cue">Read</div>
+</header>
+
+<!-- ── INTRO ── -->
+<section class="section">
+  <div class="section-label">Premise</div>
+  <h2>The question that precedes every other question</h2>
+  <p>Every major discussion about neighbourhood health — in policy, in procurement, in clinical leadership — eventually circles back to the same set of problems: access, demand, fragmentation, inequality of outcome. The responses are usually structural: more staff, new pathways, better data, integrated teams.</p>
+  <div class="pull-quote">"What needs to be true before anything else can work?"</div>
+  <p>That question is not rhetorical. It has a specific answer. And the answer is not a product, a pathway, or a policy. It is a sequence of conditions, each of which enables the next.</p>
+  <p>What follows is a description of that sequence as we have built it in practice — on a coastal peninsula in Dorset, serving 77,000 patients across five GP practices, inside one of 43 places nationally selected for the National Neighbourhood Health Implementation Programme.</p>
+  <p>We did not build to the framework. The NHS Neighbourhood Health Framework, published on 17 March 2026, described — in policy language — what we had already constructed. That is not a claim to primacy. It is a statement about the nature of the work: it emerged from practice, not from doctrine.</p>
+</section>
+
+<!-- ── STATS ── -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat">
+      <div class="stat-num">77k</div>
+      <div class="stat-label">Patients served across Weymouth &amp; Portland PCN</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5</div>
+      <div class="stat-label">GP practices in the PCN</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">43</div>
+      <div class="stat-label">NNHIP places nationally — we are one of them</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">91</div>
+      <div class="stat-label">Days of live neighbourhood signals pilot</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── THE STACK ── -->
+<section class="stack-section">
+  <div class="stack-inner">
+    <div class="stack-header">
+      <div class="section-label" style="color:rgba(245,242,236,0.3)">The infrastructure</div>
+      <h2>Five layers. One sequence.</h2>
+      <p>Each layer depends on the ones beneath it. This is not a product portfolio. It is a designed system. The sequence is the point.</p>
+    </div>
+
+    <div class="ea-spine-wrapper">
+      <div class="ea-spine">
+        <div class="ea-spine-line"></div>
+        <div class="ea-label">Emotional Architecture</div>
+        <div class="ea-spine-line"></div>
+      </div>
+
+      <div class="layers">
+
+        <!-- Layer 4 -->
+        <div class="layer" onclick="toggleDetail('d4')">
+          <div class="layer-num">4</div>
+          <div class="layer-content">
+            <div class="layer-category l4-cat">Action</div>
+            <div class="layer-name">Support Playlists</div>
+            <div class="layer-desc">Post-encounter navigation infrastructure. Every clinical, social, and community interaction answered with a structured next step.</div>
+            <div class="layer-detail" id="d4">
+              What happens after the encounter is where most systems fail. The person leaves the room, the consultation ends, the visit concludes — and the system hopes they find their way. Support Playlists is the closing layer: platform-agnostic, shaped by Emotional Architecture, available wherever someone stops and thinks <em>I don't know what to do next.</em>
+              <br><br>Not a leaflet. Not a referral pathway. A curated, sequenced navigation response built around what this person is actually carrying right now.
+              <ul><li>Class IIa SaMD (intended)</li><li>NIHR funded · April 2026</li><li>Platform agnostic</li><li>EA-informed</li></ul>
+            </div>
+          </div>
+          <div class="layer-status status-dev">In development</div>
+        </div>
+
+        <!-- Layer 3 -->
+        <div class="layer" onclick="toggleDetail('d3')">
+          <div class="layer-num">3</div>
+          <div class="layer-content">
+            <div class="layer-category l3-cat">Interpretive</div>
+            <div class="layer-name">Neighbourhood Signals</div>
+            <div class="layer-desc">Civic listening at neighbourhood scale. Everyday digital behaviour turned into intelligence that integrated teams can act on — before it appears in clinical data.</div>
+            <div class="layer-detail" id="d3">
+              The 91-day pilot on the Isle of Portland detected three distinct signal clusters — patterns of need, stress, and uncertainty visible in community digital behaviour — and handed them to the INT Partnership Group before any of them had surfaced in formal demand metrics.
+              <br><br>No personal data. No identifiable records. No surveillance architecture. Signal as a public good.
+              <ul><li>Pilot complete</li><li>3 signal clusters identified</li><li>INT Partnership Group validated</li><li>Zero personal data</li></ul>
+            </div>
+          </div>
+          <div class="layer-status status-pilot">Pilot complete</div>
+        </div>
+
+        <!-- Layer 2 -->
+        <div class="layer" onclick="toggleDetail('d2')">
+          <div class="layer-num">2</div>
+          <div class="layer-content">
+            <div class="layer-category l2-cat">Encounter</div>
+            <div class="layer-name">Ambient Voice Technology</div>
+            <div class="layer-desc">Transcription is a solved problem. The frontier is understanding. AVT embedded across the full neighbourhood encounter ecosystem — not just GP consulting rooms.</div>
+            <div class="layer-detail" id="d2">
+              The next advancement in ambient voice is not accuracy — it is interpretation. AVT deployed at Layer 2 covers the full range of neighbourhood encounters: GP consultations, social care visits, home visits, MDT meetings, governance conversations, and community referrals.
+              <br><br>The interpretive layer above — Emotional Architecture — is what distinguishes a transcript from a clinical insight.
+              <ul><li>Class IIa SaMD</li><li>Full neighbourhood deployment</li><li>MDT &amp; governance coverage</li><li>EA interpretive layer</li></ul>
+            </div>
+          </div>
+          <div class="layer-status status-class">Class IIa</div>
+        </div>
+
+        <!-- Layer 1 -->
+        <div class="layer" onclick="toggleDetail('d1')">
+          <div class="layer-num">1</div>
+          <div class="layer-content">
+            <div class="layer-category l1-cat">Access</div>
+            <div class="layer-name">AI Smart Triage</div>
+            <div class="layer-desc">Intelligent triage at the point of first contact. One year of clinical observation before deployment. Class IIa medical device.</div>
+            <div class="layer-detail" id="d1">
+              The decision to deploy AI-assisted triage was preceded by twelve months of watching — observing clinical behaviour, consulting risk management frameworks, and understanding what Class IIa medical device deployment requires of a deployer organisation under DCB0160.
+              <br><br>Smart triage does not replace clinical judgement. It structures the access layer so that clinical judgement is applied where it is genuinely needed.
+              <ul><li>Class IIa SaMD</li><li>DCB0160 compliant</li><li>12 months pre-deployment observation</li><li>Deployer CSCR completed</li></ul>
+            </div>
+          </div>
+          <div class="layer-status status-class">Class IIa</div>
+        </div>
+
+        <!-- Layer 0 -->
+        <div class="layer" onclick="toggleDetail('d0')">
+          <div class="layer-num">0</div>
+          <div class="layer-content">
+            <div class="layer-category l0-cat">Foundation</div>
+            <div class="layer-name">Navigation Intelligence</div>
+            <div class="layer-desc">Four tools. Zero vendor dependency. Already running. The conditions the framework requires, already in place.</div>
+            <div class="layer-detail" id="d0">
+              Before triage, before voice, before signals — a neighbourhood must be able to navigate itself. Layer 0 is four tools already operational across Weymouth and Portland: a peer health messaging platform, a community navigation hub, a zero-login PCN access tool, and a digital service directory built as genuine infrastructure rather than a corporate brochure.
+              <br><br>Zero vendor lock-in. If every supplier relationship ended tomorrow, Layer 0 remains.
+              <ul><li>Healthcare Heroes</li><li>The Local Social</li><li>PCN QuickLinks</li><li>PCN Digital Offer</li><li>Plausible Analytics</li><li>Zero data capture</li></ul>
+            </div>
+          </div>
+          <div class="layer-status status-live">Live</div>
+        </div>
+
+      </div>
+    </div>
+
+    <p style="font-family:var(--sans);font-size:13px;color:rgba(245,242,236,0.3);margin-top:32px;font-weight:300;">Click any layer to expand the reasoning behind it.</p>
+  </div>
+</section>
+
+<!-- ── EMOTIONAL ARCHITECTURE ── -->
+<section class="section ea-section">
+  <div class="section-label">The interpretive layer</div>
+  <h2>Emotional Architecture</h2>
+  <p>Running vertically through every layer of the stack is a single design discipline: Emotional Architecture. It is not a therapeutic framework, a sentiment scoring tool, or a wellbeing instrument. It is a structured approach to treating the emotional climate of a human encounter as primary data.</p>
+  <p>The NHS Neighbourhood Health Framework calls for person-centred care and proactive, data-led responses. Emotional Architecture is the methodology by which those commitments are operationalised rather than merely stated.</p>
+  <p>Five dimensions. Each one a distinct form of signal that a well-designed system reads before deciding what a person needs next.</p>
+
+  <div class="ea-dims">
+    <div class="ea-dim">
+      <div class="ea-dim-num">I</div>
+      <div class="ea-dim-name">Tone Gradient</div>
+      <div class="ea-dim-desc">The emotional register of an encounter as a gradient that shifts throughout. Identical words carry different meaning at different points on the gradient.</div>
+    </div>
+    <div class="ea-dim">
+      <div class="ea-dim-num">II</div>
+      <div class="ea-dim-name">Disclosure Readiness</div>
+      <div class="ea-dim-desc">The degree to which a person is prepared to reveal their actual concern. Primary disclosure frequently differs from real concern. Final moments carry disproportionate risk.</div>
+    </div>
+    <div class="ea-dim">
+      <div class="ea-dim-num">III</div>
+      <div class="ea-dim-name">Omission Topology</div>
+      <div class="ea-dim-desc">The structural pattern of what is not said. Which topics are avoided. Where speech becomes vague. Omission is not absence of information — it is signal in its own right.</div>
+    </div>
+    <div class="ea-dim">
+      <div class="ea-dim-num">IV</div>
+      <div class="ea-dim-name">Relational Load</div>
+      <div class="ea-dim-desc">The power dynamic, trust relationship, and shared history shaping what is communicated explicitly versus what is carried by context.</div>
+    </div>
+    <div class="ea-dim">
+      <div class="ea-dim-num">V</div>
+      <div class="ea-dim-name">Temporal Pressure</div>
+      <div class="ea-dim-desc">The encounter type and time context — first contact, crisis, discharge, routine review — and how these determine what is significant and what response is appropriate.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHO WE ARE ── -->
+<section class="section">
+  <div class="section-label">Neighbourhood CoLab CIC</div>
+  <h2>The organisation behind the stack</h2>
+  <p>Neighbourhood CoLab is a Community Interest Company. That is a structural choice, not an administrative detail. No platform allegiance. No vendor incentive. Our independence is what makes us useful — and what makes our endorsements meaningful.</p>
+  <p>The CoLab clinical panel brings seventy-five years of combined frontline public service across nursing, clinical psychology, and social work. Emotional Architecture was developed with, and tested against, that panel. The four co-directors have known each other since childhood. That is not a detail. That is the infrastructure.</p>
+
+  <div class="team-grid">
+    <div class="team-member">
+      <div class="team-role">Co-Director</div>
+      <div class="team-name">Lucy Winterburn</div>
+      <div class="team-detail">NHS nurse · 25 years frontline experience</div>
+    </div>
+    <div class="team-member">
+      <div class="team-role">Co-Director</div>
+      <div class="team-name">Dr Bruce Fernie</div>
+      <div class="team-detail">Clinical psychologist · 25 years NHS</div>
+    </div>
+    <div class="team-member">
+      <div class="team-role">Co-Director</div>
+      <div class="team-name">Justin Jones</div>
+      <div class="team-detail">Social worker · 25 years local authority</div>
+    </div>
+    <div class="team-member">
+      <div class="team-role">Co-Director</div>
+      <div class="team-name">Mark Winterburn</div>
+      <div class="team-detail">Applied philosopher · Digital &amp; Transformation Lead, Weymouth &amp; Portland PCN</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <h2>If you want to hear more — or <em>build this where you are</em></h2>
+  <p class="cta-body">Mark speaks at conferences, INTs, PCN leadership days, and policy forums on neighbourhood health, navigation intelligence, and the practical architecture of integrated care. Neighbourhood CoLab works with places that want to build this properly.</p>
+  <div class="cta-buttons">
+    <a href="mailto:mark.winterburn@dorsetgp.nhs.uk?subject=Speaking enquiry" class="btn btn-primary">Speaking enquiry</a>
+    <a href="https://neighbourhoodcolab.netlify.app" target="_blank" class="btn btn-secondary">CoLab conversation</a>
+  </div>
+  <div class="cta-contact">
+    <div>Mark Winterburn · Digital &amp; Transformation Lead, Weymouth &amp; Portland PCN</div>
+    <div>Co-Director, Neighbourhood CoLab CIC · Isle of Portland, Dorset</div>
+    <div style="margin-top:12px">
+      <a href="mailto:mark.winterburn@dorsetgp.nhs.uk">mark.winterburn@dorsetgp.nhs.uk</a>
+      &nbsp;·&nbsp;
+      <a href="mailto:hello@neighbourhoodcolab.co.uk">hello@neighbourhoodcolab.co.uk</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Neighbourhood CoLab CIC · Isle of Portland, Dorset · March 2026</span>
+  <span>Scrollsites™ — invented here</span>
+</footer>
+
+<script>
+function toggleDetail(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+</script>
+</body>
+</html>

@@ -462,43 +462,54 @@
   }
 
   /* ── ABOUT / COLAB ── */
-  .team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1px;
-    background: var(--rule);
+  .colab-section {
+    background: var(--paper);
+  }
+
+  .colab-panel {
+    background: var(--paper-dark);
     border: 1px solid var(--rule);
+    padding: 40px;
     margin-top: 48px;
   }
 
-  .team-member {
-    background: var(--paper);
-    padding: 28px;
-  }
-
-  .team-role {
+  .colab-panel-label {
     font-family: var(--sans);
     font-size: 10px;
     font-weight: 500;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: rgba(15,14,12,0.35);
-    margin-bottom: 6px;
+    margin-bottom: 16px;
   }
 
-  .team-name {
+  .colab-panel-name {
     font-family: var(--serif);
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 700;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 
-  .team-detail {
+  .colab-panel-detail {
     font-family: var(--sans);
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 300;
-    color: rgba(15,14,12,0.5);
-    line-height: 1.5;
+    color: rgba(15,14,12,0.6);
+    line-height: 1.7;
+  }
+
+  .colab-panel-detail p { margin-bottom: 8px; }
+  .colab-panel-detail p:last-child { margin-bottom: 0; }
+
+  .colab-clinic {
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(15,14,12,0.45);
+    line-height: 1.6;
   }
 
   /* ── CTA ── */
@@ -654,6 +665,18 @@
   <p>We did not build to the framework. The NHS Neighbourhood Health Framework, published on 17 March 2026, described — in policy language — what we had already constructed. That is not a claim to primacy. It is a statement about the nature of the work: it emerged from practice, not from doctrine.</p>
 </section>
 
+<!-- ── THE GAP ── -->
+<section class="section" style="background: #f0ece3; max-width: 100%; padding: 80px 40px; border-bottom: 1px solid var(--rule);">
+  <div style="max-width: 720px; margin: 0 auto;">
+    <div class="section-label">The problem nobody designed for</div>
+    <h2>What happens after the appointment ends</h2>
+    <p>The NHS has invested in clinical AI at the point of diagnosis. Almost nobody has asked what happens after the appointment ends.</p>
+    <div class="pull-quote">"Not absence of need. Hesitation in the presence of friction."</div>
+    <p>A patient leaves a GP consultation. They have a diagnosis, a plan, and a head full of anxiety. By the time they reach the car park, 40% of what they were told has gone. What they have in their pocket is a phone. What they get on that phone is nothing.</p>
+    <p>This is the gap. It is not a technology gap. It is a design gap. Nobody designed for what happens next. The Neighbourhood Health Stack is the attempt to fix that — layer by layer, from the ground up.</p>
+  </div>
+</section>
+
 <!-- ── STATS ── -->
 <div class="stats-bar">
   <div class="stats-inner">
@@ -703,8 +726,8 @@
             <div class="layer-desc">Post-encounter navigation infrastructure. Every clinical, social, and community interaction answered with a structured next step.</div>
             <div class="layer-detail" id="d4">
               What happens after the encounter is where most systems fail. The person leaves the room, the consultation ends, the visit concludes — and the system hopes they find their way. Support Playlists is the closing layer: platform-agnostic, shaped by Emotional Architecture, available wherever someone stops and thinks <em>I don't know what to do next.</em>
-              <br><br>Not a leaflet. Not a referral pathway. A curated, sequenced navigation response built around what this person is actually carrying right now.
-              <ul><li>Class II SaMD (intended)</li><li>NIHR funded · April 2026</li><li>Platform agnostic</li><li>EA-informed</li></ul>
+              <br><br>Not a leaflet. Not a referral pathway. A curated, sequenced navigation response built around what this person is actually carrying right now. The primary care expression of this methodology is After Notes: the patient receives their next steps the moment the GP approves the note. Before they reach the car.
+              <ul><li>Class II SaMD (intended)</li><li>NIHR funded · April 2026</li><li>Platform agnostic</li><li>EA-informed</li><li>1p per note commercial model</li></ul>
             </div>
           </div>
           <div class="layer-status status-dev">In development</div>
@@ -819,33 +842,20 @@
 </section>
 
 <!-- ── WHO WE ARE ── -->
-<section class="section">
+<section class="section colab-section">
   <div class="section-label">Neighbourhood CoLab CIC</div>
   <h2>The organisation behind the stack</h2>
   <p>Neighbourhood CoLab is a Community Interest Company. That is a structural choice, not an administrative detail. No platform allegiance. No vendor incentive. Our independence is what makes us useful — and what makes our endorsements meaningful.</p>
   <p>The CoLab clinical panel brings seventy-five years of combined frontline public service across nursing, clinical psychology, and social work. Emotional Architecture was developed with, and tested against, that panel. The four co-directors have known each other since childhood. That is not a detail. That is the infrastructure.</p>
 
-  <div class="team-grid">
-    <div class="team-member">
-      <div class="team-role">Co-Director</div>
-      <div class="team-name">Lucy Winterburn</div>
-      <div class="team-detail">NHS nurse · 25 years frontline experience</div>
+  <div class="colab-panel">
+    <div class="colab-panel-label">Co-Director · Digital &amp; Transformation Lead</div>
+    <div class="colab-panel-name">Mark Winterburn</div>
+    <div class="colab-panel-detail">
+      <p>Applied philosopher. Twenty years in broadcast television through the analogue-to-digital transition. Prison officer at HMP Portland. Community safety. Primary care from November 2024.</p>
+      <p>Built the Neighbourhood Health Stack from scratch, in a coastal community with high deprivation and low digital confidence, with no budget and no template. The perspective that comes from outside the system is precisely what allows him to see what people inside it stopped seeing.</p>
     </div>
-    <div class="team-member">
-      <div class="team-role">Co-Director</div>
-      <div class="team-name">Dr Bruce Fernie</div>
-      <div class="team-detail">Clinical psychologist · 25 years NHS</div>
-    </div>
-    <div class="team-member">
-      <div class="team-role">Co-Director</div>
-      <div class="team-name">Justin Jones</div>
-      <div class="team-detail">Social worker · 25 years local authority</div>
-    </div>
-    <div class="team-member">
-      <div class="team-role">Co-Director</div>
-      <div class="team-name">Mark Winterburn</div>
-      <div class="team-detail">Applied philosopher · Digital &amp; Transformation Lead, Weymouth &amp; Portland PCN</div>
-    </div>
+    <div class="colab-clinic">The CoLab clinical panel: 75 combined years of frontline NHS nursing, clinical psychology, and local authority social work.</div>
   </div>
 </section>
 
@@ -858,7 +868,7 @@
     <a href="https://neighbourhoodcolab.netlify.app" target="_blank" class="btn btn-secondary">CoLab conversation</a>
   </div>
   <div class="cta-contact">
-    <div>Mark Winterburn · Digital &amp; Transformation Lead, Weymouth &amp; Portland PCN</div>
+    <div>Mark Winterburn · Digital &amp; Transformation Lead, Weymouth and Portland PCN</div>
     <div>Co-Director, Neighbourhood CoLab CIC · Isle of Portland, Dorset</div>
     <div style="margin-top:12px">
       <a href="mailto:mark.winterburn@dorsetgp.nhs.uk">mark.winterburn@dorsetgp.nhs.uk</a>

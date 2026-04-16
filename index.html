@@ -81,7 +81,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 120px 64px 80px;
+  padding: 154px 64px 80px; /* 120px + 34px ribbon height */
   position: relative;
   background: var(--ink);
   color: var(--paper);
@@ -924,21 +924,216 @@ footer span {
 .scroll-cue       { animation: fadeUp 0.65s 0.62s ease both; }
 
 /* ─── RESPONSIVE ─── */
+
+/* Tablet: 641px–900px */
+@media (min-width: 641px) and (max-width: 900px) {
+  .masthead { padding: 100px 40px 64px; }
+  .policy-band { padding: 44px 40px; gap: 28px; }
+  .shifts-section { padding: 72px 40px; }
+  .stats-bar { padding: 48px 32px; }
+  .stack-section { padding: 72px 32px; }
+  .ea-section .section,
+  .colab-section .section { padding: 72px 32px; }
+  .cta-section { padding: 80px 32px; }
+  .shifts-table th { font-size: 9px; }
+  .shift-name { font-size: 14px; }
+  .shift-response { font-size: 12px; }
+}
+
+/* Mobile: up to 640px — comprehensive overhaul */
 @media (max-width: 640px) {
-  .policy-ribbon-item { font-size: 8px; padding: 7px 10px; letter-spacing: 0.1em; }
-  .masthead { padding: 100px 28px 60px; }
-  .scroll-cue { left: 28px; }
-  .section { padding: 60px 24px; }
-  .policy-band { padding: 36px 24px; gap: 20px; flex-direction: column; }
-  .policy-band-num { font-size: 32px; }
-  .shifts-section { padding: 60px 24px; }
-  .shifts-table { font-size: 14px; }
-  .shifts-table th, .shifts-table td { padding: 16px 10px 16px 0; }
-  .layer-main { grid-template-columns: 44px 1fr; gap: 16px; }
-  .layer-status { display: none; }
-  .layer-detail { padding-left: 20px; }
-  .stats-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
-  footer { padding: 20px 24px; }
+
+  body { font-size: 16px; line-height: 1.72; }
+
+  /* Policy ribbon: stack vertically, abbreviated labels */
+  .policy-ribbon {
+    flex-direction: column;
+    position: relative; /* static on mobile — not fixed, saves space */
+  }
+  .policy-ribbon-item {
+    font-size: 9px;
+    padding: 8px 16px;
+    letter-spacing: 0.12em;
+    justify-content: flex-start;
+  }
+
+  /* Masthead: tighten padding, restore top since ribbon is no longer fixed */
+  .masthead {
+    min-height: auto;
+    padding: 48px 24px 56px;
+  }
+  .masthead-eyebrow {
+    font-size: 9px;
+    margin-bottom: 36px;
+    gap: 12px;
+  }
+  .masthead-title {
+    font-size: clamp(38px, 11vw, 56px);
+    margin-bottom: 28px;
+    letter-spacing: -0.02em;
+  }
+  .masthead-body {
+    font-size: 14px;
+    margin-bottom: 32px;
+  }
+  .masthead-policy-tags {
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+  .policy-tag {
+    font-size: 9px;
+    padding: 5px 11px;
+  }
+  .masthead-meta {
+    font-size: 10px;
+    gap: 14px;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .scroll-cue { display: none; }
+
+  /* Policy anchor bands */
+  .policy-band {
+    padding: 32px 20px;
+    gap: 16px;
+    flex-direction: column;
+  }
+  .policy-band-num {
+    font-size: 28px;
+    margin-top: 0;
+  }
+  .policy-band-doc { font-size: 9px; }
+  .policy-band-statement { font-size: 15px; }
+  .policy-band-response { font-size: 13px; }
+
+  /* Prose sections */
+  .section {
+    padding: 52px 20px;
+  }
+  .section h2 { font-size: clamp(22px, 7vw, 30px); }
+  .section p { font-size: 15px; }
+  .pull-quote {
+    font-size: 18px;
+    padding-left: 20px;
+    margin: 32px 0;
+  }
+
+  /* Inline policy callouts */
+  .policy-callout {
+    padding: 16px 16px;
+    gap: 12px;
+    flex-direction: column;
+  }
+  .callout-doc {
+    font-size: 9px;
+    min-width: auto;
+  }
+  .callout-text { font-size: 13px; }
+
+  /* Stats bar */
+  .stats-bar { padding: 44px 20px; }
+  .stats-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  .stat-num { font-size: 40px; }
+  .stat-label { font-size: 11px; }
+
+  /* Stack section */
+  .stack-section { padding: 52px 20px; }
+  .stack-header { margin-bottom: 40px; }
+  .stack-header h2 { font-size: clamp(22px, 7vw, 30px); }
+  .stack-header p { font-size: 13px; }
+
+  /* Layer rows */
+  .layer-main {
+    grid-template-columns: 40px 1fr;
+    gap: 14px;
+    padding: 22px 0 22px 0;
+  }
+  .layer-num { font-size: 24px; padding-top: 4px; }
+  .layer-name { font-size: 18px; }
+  .layer-desc { font-size: 12px; }
+  .layer-category { font-size: 9px; }
+  .layer-status { display: none; } /* hidden on mobile — shown in detail */
+  .layer-policy-tags { gap: 5px; }
+  .layer-ptag { font-size: 8px; padding: 3px 8px; }
+
+  /* Layer detail panels */
+  .layer-detail {
+    padding: 16px 0 20px 54px;
+    font-size: 13px;
+  }
+  .layer-detail-policy {
+    padding: 12px 14px;
+    font-size: 12px;
+  }
+  .layer-chips li { font-size: 9px; padding: 3px 9px; }
+  .expand-hint { font-size: 10px; margin-top: 20px; }
+
+  /* Three shifts — convert table to cards on mobile */
+  .shifts-section { padding: 52px 20px; }
+  .shifts-inner > p { font-size: 13px; margin-bottom: 36px; }
+
+  .shifts-table,
+  .shifts-table thead,
+  .shifts-table tbody,
+  .shifts-table th,
+  .shifts-table td,
+  .shifts-table tr {
+    display: block;
+    width: 100%;
+  }
+  .shifts-table thead { display: none; } /* hide column headers */
+  .shifts-table tbody tr {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--rule-light);
+    margin-bottom: 0;
+  }
+  .shifts-table tbody tr:last-child { border-bottom: none; }
+  .shifts-table td {
+    padding: 0 0 12px 0;
+    border: none;
+  }
+  .shifts-table td:last-child { padding-bottom: 0; }
+  .shift-name { font-size: 17px; }
+  .shift-policy { font-size: 10px; margin-bottom: 10px; }
+  .shift-response { font-size: 13px; }
+  .shift-layer-badge { font-size: 9px; }
+
+  /* EA section */
+  .ea-dims {
+    grid-template-columns: 1fr;
+    margin-top: 32px;
+  }
+  .ea-dim { padding: 22px 20px; }
+  .ea-dim-name { font-size: 15px; }
+  .ea-dim-desc { font-size: 12.5px; }
+
+  /* CoLab section */
+  .colab-panel { padding: 28px 20px; }
+  .colab-panel-name { font-size: 20px; }
+  .colab-panel-detail { font-size: 13px; }
+  .colab-clinic { font-size: 12px; }
+
+  /* CTA */
+  .cta-section { padding: 72px 24px; }
+  .cta-body { font-size: 14px; margin-bottom: 40px; }
+  .cta-buttons { flex-direction: column; align-items: center; }
+  .btn { width: 100%; max-width: 280px; text-align: center; padding: 18px 24px; }
+  .cta-contact { font-size: 12px; }
+
+  /* Gap section (inline styles overridden) */
+  .gap-section { padding: 52px 20px !important; }
+
+  /* Footer */
+  footer {
+    padding: 20px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  footer span { font-size: 10px; }
 }
 </style>
 </head>
@@ -1023,7 +1218,7 @@ footer span {
 </section>
 
 <!-- ─── THE GAP ─── -->
-<section class="section" style="background: #f0ece3; max-width: 100%; padding: 80px 40px; border-bottom: 1px solid var(--rule);">
+<section class="section gap-section" style="background: #f0ece3; max-width: 100%; padding: 80px 40px; border-bottom: 1px solid var(--rule);">
   <div style="max-width: 740px; margin: 0 auto;">
     <div class="section-label">The problem nobody designed for</div>
     <h2>What happens after the appointment ends</h2>

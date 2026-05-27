@@ -126,7 +126,6 @@ body {
 }
 
 .thesis-line + .thesis-line { margin-top: 4px; }
-
 .thesis-break { height: 20px; }
 
 .thesis-line.bold {
@@ -281,6 +280,84 @@ body {
   text-transform: uppercase;
   color: rgba(13,12,10,0.35);
   font-style: normal;
+}
+
+/* PHILOSOPHY INTERLUDE */
+.philosophy-section {
+  padding: 80px 64px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.philosophy-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.philosophy-heading {
+  font-family: var(--display);
+  font-size: clamp(22px, 3.5vw, 36px);
+  font-style: italic;
+  line-height: 1.3;
+  color: var(--paper);
+  margin-bottom: 36px;
+  opacity: 0.9;
+}
+
+.philosophy-body {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(245,242,236,0.52);
+  line-height: 1.85;
+  max-width: 600px;
+}
+
+.philosophy-body + .philosophy-body { margin-top: 16px; }
+
+.philosophy-body strong {
+  font-weight: 500;
+  color: rgba(245,242,236,0.82);
+}
+
+.aristotle-trio {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 48px 0;
+}
+
+.aristotle-item {
+  padding: 24px;
+  border: 1px solid rgba(245,242,236,0.08);
+  background: rgba(245,242,236,0.03);
+}
+
+.aristotle-term {
+  font-family: var(--display);
+  font-size: 20px;
+  font-style: italic;
+  color: rgba(245,242,236,0.55);
+  margin-bottom: 6px;
+}
+
+.aristotle-def {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(245,242,236,0.25);
+  margin-bottom: 12px;
+}
+
+.aristotle-stack {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(245,242,236,0.45);
+  line-height: 1.6;
 }
 
 /* STACK SECTION */
@@ -656,18 +733,15 @@ footer span {
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-  /* Ribbon: stack vertically on mobile */
   .ribbon { flex-direction: column; }
   .ribbon-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); padding: 7px 16px; }
   .ribbon-item:last-child { border-bottom: none; }
 
-  /* Masthead */
   .masthead { padding: 48px 24px 56px; }
   .masthead-org { margin-bottom: 32px; }
   .masthead-title { margin-bottom: 40px; }
   .thesis { padding-left: 20px; }
 
-  /* Proof band: two columns on mobile */
   .proof-band {
     padding: 32px 24px;
     gap: 0;
@@ -677,39 +751,31 @@ footer span {
     column-gap: 16px;
   }
   .proof-divider { display: none; }
-  .proof-note {
-    grid-column: 1 / -1;
-    margin-left: 0;
-    max-width: 100%;
-    margin-top: 4px;
-  }
+  .proof-note { grid-column: 1 / -1; margin-left: 0; max-width: 100%; margin-top: 4px; }
   .proof-num { font-size: 28px; }
 
-  /* Sections */
   .problem-section,
   .stack-section,
   .equity-section,
-  .framework-section { padding: 52px 24px; }
+  .framework-section,
+  .philosophy-section { padding: 52px 24px; }
   .procurement-section { padding: 52px 24px; }
 
-  /* Stack layers */
+  .aristotle-trio { grid-template-columns: 1fr; gap: 16px; }
+
   .layer { grid-template-columns: 36px 1fr; gap: 14px; padding: 28px 0; }
   .layer-right { display: none; }
   .layer-num { font-size: 10px; padding-top: 4px; }
 
-  /* Pull quote */
   .pull-quote { padding: 24px 20px; margin: 36px 0; }
   .pull-quote p { font-size: 16px; }
 
-  /* Procurement */
   .procurement-item { gap: 14px; padding: 24px 0; }
   .proc-name { font-size: 16px; }
 
-  /* Framework */
   .framework-inner { text-align: left; }
   .framework-response { text-align: left; }
 
-  /* Close */
   .close-section { padding: 64px 24px; }
   .close-contact { font-size: 11px; }
 
@@ -730,7 +796,8 @@ footer span {
 <nav class="ribbon">
   <div class="ribbon-item">NHS 10 Year Health Plan · 2025</div>
   <div class="ribbon-item">Neighbourhood Health Framework · March 2026</div>
-  <div class="ribbon-item">43 NNHIP places nationally · Dorset is one</div>
+  <div class="ribbon-item">Devolution Bill · Neighbourhood Governance · 2026</div>
+  <div class="ribbon-item">43 NNHIP places · Dorset Council and NHS Dorset · Joint lead</div>
 </nav>
 
 <!-- MASTHEAD -->
@@ -739,11 +806,8 @@ footer span {
     <div class="masthead-org">Weymouth and Portland PCN &nbsp;·&nbsp; Dorset &nbsp;·&nbsp; Built from practice</div>
     <h1 class="masthead-title">The Neighbourhood<br><span class="italic">Health Stack</span></h1>
     <div class="thesis">
-      <p class="thesis-line">Every system in primary care</p>
-      <p class="thesis-line">starts at the moment of demand.</p>
-      <div class="thesis-break"></div>
-      <p class="thesis-line bold">This one starts before it.</p>
-      <p class="thesis-line bold">And it does not stop when the appointment ends.</p>
+      <p class="thesis-line bold">The neighbourhood is the smallest unit of design.</p>
+      <p class="thesis-line bold">This is what it looks like when you build from there.</p>
       <p class="thesis-line dim">Five layers of neighbourhood health infrastructure. The foundation is free and copyable. Two procurement decisions that will determine who owns the infrastructure of the neighbourhood health system. No market surface in primary care.</p>
     </div>
   </div>
@@ -783,7 +847,7 @@ footer span {
   <div class="problem-inner">
     <div class="section-label reveal">The gap no current system addresses</div>
     <h2 class="problem-heading reveal">One in five GP appointments are for <em>non-medical reasons.</em> Loneliness. Housing. Debt. Social isolation.</h2>
-    <p class="problem-body reveal">This is NHS England's own figure. It is not a clinical problem. It is a navigation problem. People arrive at the GP because the GP is the only door they know how to find. Every triage tool, every ambient voice platform, every patient-facing technology deployed into primary care today starts at the same moment: when a patient contacts a service.</p>
+    <p class="problem-body reveal">This is NHS England's own figure. It is not a clinical problem. It is a navigation problem. And it is a civic problem. People arrive at the GP because the GP is the only door they know how to find. The infrastructure that should sit between a person and their community has either never been built, or has never been connected. Every triage tool, every ambient voice platform, every patient-facing technology deployed into primary care today starts at the same moment: when a patient contacts a service.</p>
     <p class="problem-body reveal">The space before that moment, and everything after the appointment ends, is where the people with the greatest need fall through.</p>
 
     <div class="pull-quote reveal">
@@ -791,6 +855,35 @@ footer span {
     </div>
 
     <p class="problem-body reveal">There is also a market problem. Patient activation platforms are being sold into primary care at scale. The premise is that patients need to be activated by a product. The evidence is that the people who need activation most are least likely to engage with a platform designed for people who are already engaged. <strong>The stack activates people by being the infrastructure they move through.</strong> The ones who need it most encounter it most, use it most, and learn most. That is not a feature. It is a consequence of building infrastructure that covers the whole journey.</p>
+  </div>
+</section>
+
+<!-- PHILOSOPHY INTERLUDE -->
+<section class="philosophy-section">
+  <div class="philosophy-inner">
+    <h2 class="philosophy-heading reveal">What kind of knowledge does a neighbourhood need?</h2>
+    <p class="philosophy-body reveal">Aristotle distinguished three kinds of knowledge. <strong>Episteme:</strong> what is true. <strong>Techne:</strong> how to do something. <strong>Phronesis:</strong> the practical wisdom to know what the situation actually requires. Public services have built systems that are rich in episteme and strong on techne. The gap is almost always phronesis. The judgment that cannot be reduced to a rule. The knowledge that only comes from being present in a place, over time, with the people who live there.</p>
+    <p class="philosophy-body reveal">The Neighbourhood Health Stack is an attempt to build infrastructure that carries all three. Navigation Intelligence is episteme: what exists, where to go. Smart Triage and Ambient Voice Technology are techne: doing the right thing, in the right way, at the right moment. Neighbourhood Signals and Support Playlists are the architecture for phronesis: the neighbourhood developing the capacity to understand itself, and act on what it knows.</p>
+
+    <div class="aristotle-trio reveal">
+      <div class="aristotle-item">
+        <div class="aristotle-term">Episteme</div>
+        <div class="aristotle-def">Theoretical knowledge</div>
+        <div class="aristotle-stack">What exists. Where to go. L0 Navigation Intelligence. The foundation the whole stack rests on.</div>
+      </div>
+      <div class="aristotle-item">
+        <div class="aristotle-term">Techne</div>
+        <div class="aristotle-def">Practical craft</div>
+        <div class="aristotle-stack">How to route equitably. How to make the encounter fully present. L1 Smart Triage. L2 Ambient Voice.</div>
+      </div>
+      <div class="aristotle-item">
+        <div class="aristotle-term">Phronesis</div>
+        <div class="aristotle-def">Practical wisdom</div>
+        <div class="aristotle-stack">What the neighbourhood needs, before it knows to ask. L3 Signals. L4 Support Playlists.</div>
+      </div>
+    </div>
+
+    <p class="philosophy-body reveal">A democratic system that cannot develop phronesis at neighbourhood level is not just inefficient. It is not listening. The stack is an attempt to build the conditions for listening at scale, without surveillance, without market surfaces, and without asking the people who need it most to do the work of finding it.</p>
   </div>
 </section>
 
@@ -841,7 +934,7 @@ footer span {
         <div class="layer-num">L3</div>
         <div class="layer-body">
           <div class="layer-name">Neighbourhood Signals</div>
-          <div class="layer-consequence">Civic listening infrastructure built on top of L0. The navigation layer already shows how people are moving — the pages they loop between, the dead ends, the drop-offs, the QR scans that cluster in specific locations. Those patterns are signals of where pressure is forming across the neighbourhood, <strong>before it becomes demand on services.</strong> The 91-day pilot in Weymouth and Portland is complete. Three signal clusters. Zero personal data. Ready to deploy.</div>
+          <div class="layer-consequence">The civic listening layer. Built on top of L0, it turns the navigation infrastructure into a democratic instrument. The pages people loop between, the dead ends, the drop-offs, the QR scans that cluster in specific streets: these are not analytics. <strong>They are the neighbourhood telling you where pressure is forming before it becomes demand on services.</strong> The 91-day pilot in Weymouth and Portland is complete. Three signal clusters. Zero personal data. The community is already speaking. This layer listens.</div>
         </div>
         <div class="layer-right">
           <span class="layer-status status-pilot">Pilot complete</span>
@@ -870,6 +963,7 @@ footer span {
     <h2 class="equity-heading reveal">The stack does not need a patient activation platform sitting on top of it. <em>It is the activation.</em></h2>
     <p class="equity-body reveal">Patient activation platforms are built on an assumption: that engagement is a behaviour to be encouraged from outside. The evidence from primary care is consistent. The people with the highest need, lowest health literacy, and weakest social capital are least likely to find a platform, trust it, or persist with it. A platform that waits for engagement reproduces the inequalities it was designed to address.</p>
     <p class="equity-body reveal">The Neighbourhood Health Stack works differently. Every layer is designed to meet people where they already are. Searching for information. Contacting a service. Sitting in a consultation. Looking for what comes next. <strong>The person with the greatest health burden encounters more of the stack, more often, and derives more from each encounter.</strong> Equity and continuity are not features added to the infrastructure. They are the consequence of building infrastructure that covers the whole journey.</p>
+    <p class="equity-body reveal">The human layer is not a feature of the stack. It is the methodology beneath it. A nurse, a psychologist, a social worker, and a philosopher — a century of combined experience of what happens when systems fail the people they were built to serve. That is what Neighbourhood CoLab CIC brings to the infrastructure. The space technology cannot replace, and too often forgets to leave.</p>
   </div>
 </section>
 
@@ -908,7 +1002,7 @@ footer span {
   <div class="framework-inner">
     <p class="framework-quote reveal">"Beyond the foundational interventions, we will not prescribe an approach. Local government and ICBs know their local communities best."</p>
     <p class="framework-attr reveal">NHS Neighbourhood Health Framework · March 2026</p>
-    <p class="framework-response reveal">This is what building from practice looks like. 74,000 patients in a place with high deprivation, low digital confidence, and no template. The Framework named the destination. The work here has been mapping the route.</p>
+    <p class="framework-response reveal">This is what building from practice looks like. 74,000 patients in a place with high deprivation, low digital confidence, and no template. The neighbourhood is the smallest unit of design. The Framework named the destination. The work here has been mapping the route, at neighbourhood level, in alignment with everything the frameworks and the legislation are now pointing toward.</p>
   </div>
 </section>
 
@@ -916,7 +1010,7 @@ footer span {
 <section class="close-section">
   <div class="close-inner">
     <h2 class="close-title">One neighbourhood.<br><em>Copyable everywhere.</em></h2>
-    <p class="close-body">Built from inside the system, at neighbourhood level, with the population that makes the equity argument concrete. If you are working on neighbourhood health infrastructure and want to understand what has been built here, get in touch.</p>
+    <p class="close-body">Built from inside the system, at neighbourhood level, with the population that makes the equity argument concrete. The civic infrastructure layer is already live. If you are working on what neighbourhood health and civic infrastructure look like when they are built together, this is what it looks like in practice.</p>
     <div class="close-contact">
       <div>Mark Winterburn</div>
       <div>Digital &amp; Transformation Lead &nbsp;·&nbsp; Weymouth and Portland PCN</div>

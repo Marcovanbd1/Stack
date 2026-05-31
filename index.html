@@ -38,24 +38,6 @@ body {
   overflow-x: hidden;
 }
 
-/* POLICY RIBBON */
-.ribbon {
-  display: flex;
-  font-family: var(--sans);
-  font-size: 9.5px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-.ribbon-item {
-  flex: 1;
-  padding: 8px 16px;
-  color: rgba(255,255,255,0.45);
-  background: var(--ink);
-  border-right: 1px solid rgba(255,255,255,0.06);
-}
-.ribbon-item:last-child { border-right: none; }
-
 /* MASTHEAD */
 .masthead {
   background: var(--ink);
@@ -88,6 +70,7 @@ body {
   display: flex;
   align-items: center;
   gap: 20px;
+  animation: fadeUp 0.6s ease both;
 }
 .masthead-org::before {
   content: '';
@@ -104,6 +87,7 @@ body {
   line-height: 0.95;
   letter-spacing: -0.028em;
   margin-bottom: 56px;
+  animation: fadeUp 0.6s 0.1s ease both;
 }
 
 .masthead-title .italic {
@@ -116,6 +100,7 @@ body {
   max-width: 580px;
   border-left: 2px solid rgba(245,242,236,0.1);
   padding-left: 28px;
+  animation: fadeUp 0.6s 0.22s ease both;
 }
 
 .thesis-line {
@@ -124,15 +109,8 @@ body {
   line-height: 1.58;
   color: rgba(245,242,236,0.75);
 }
-
 .thesis-line + .thesis-line { margin-top: 4px; }
-.thesis-break { height: 20px; }
-
-.thesis-line.bold {
-  font-weight: 700;
-  color: var(--paper);
-}
-
+.thesis-line.bold { font-weight: 700; color: var(--paper); }
 .thesis-line.dim {
   color: rgba(245,242,236,0.4);
   font-size: clamp(14px, 1.8vw, 16px);
@@ -141,67 +119,12 @@ body {
   margin-top: 24px;
 }
 
-/* PROOF BAND */
-.proof-band {
-  background: var(--paper-warm);
-  border-bottom: 1px solid var(--rule);
-  padding: 40px 64px;
-  display: flex;
-  align-items: center;
-  gap: 48px;
-  flex-wrap: wrap;
-}
-
-.proof-stat {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  flex-shrink: 0;
-}
-
-.proof-num {
-  font-family: var(--serif);
-  font-size: 36px;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-}
-
-.proof-label {
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 400;
-  color: rgba(13,12,10,0.42);
-  line-height: 1.4;
-  max-width: 150px;
-}
-
-.proof-divider {
-  width: 1px;
-  height: 44px;
-  background: var(--rule);
-  flex-shrink: 0;
-}
-
-.proof-note {
-  font-family: var(--sans);
-  font-size: 13px;
-  font-weight: 300;
-  color: rgba(13,12,10,0.5);
-  line-height: 1.68;
-  max-width: 340px;
-  margin-left: auto;
-  font-style: italic;
-}
-
-/* PROBLEM SECTION */
-.problem-section {
-  padding: 80px 64px;
+/* WHAT IT IS */
+.whatis-section {
+  padding: 88px 64px;
   border-bottom: 1px solid var(--rule);
 }
-
-.problem-inner { max-width: 860px; margin: 0 auto; }
+.whatis-inner { max-width: 860px; margin: 0 auto; }
 
 .section-label {
   font-family: var(--sans);
@@ -223,174 +146,64 @@ body {
   background: var(--rule);
 }
 
-.problem-heading {
+.whatis-heading {
   font-family: var(--serif);
   font-size: clamp(22px, 3.5vw, 34px);
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: -0.015em;
   color: var(--ink);
-  max-width: 640px;
+  max-width: 700px;
   margin-bottom: 36px;
 }
-
-.problem-heading em {
+.whatis-heading em {
   font-style: italic;
   font-family: var(--display);
 }
 
-.problem-body {
+.whatis-body {
   font-family: var(--sans);
   font-size: 15px;
   font-weight: 300;
   color: rgba(13,12,10,0.62);
-  line-height: 1.78;
-  max-width: 620px;
+  line-height: 1.82;
+  max-width: 640px;
 }
-
-.problem-body + .problem-body { margin-top: 16px; }
-
-.problem-body strong {
+.whatis-body + .whatis-body { margin-top: 18px; }
+.whatis-body strong {
   font-weight: 600;
   color: rgba(13,12,10,0.85);
-}
-
-.pull-quote {
-  margin: 48px 0;
-  padding: 32px 36px;
-  background: var(--paper-warm);
-  border-left: 3px solid var(--accent);
-}
-
-.pull-quote p {
-  font-family: var(--serif);
-  font-size: clamp(17px, 2.5vw, 22px);
-  line-height: 1.5;
-  color: var(--ink);
-  font-weight: 700;
-}
-
-.pull-quote cite {
-  display: block;
-  margin-top: 12px;
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(13,12,10,0.35);
-  font-style: normal;
-}
-
-/* PHILOSOPHY INTERLUDE */
-.philosophy-section {
-  padding: 80px 64px;
-  border-bottom: 1px solid var(--rule);
-  background: var(--ink);
-  color: var(--paper);
-}
-
-.philosophy-inner {
-  max-width: 720px;
-  margin: 0 auto;
-}
-
-.philosophy-heading {
-  font-family: var(--display);
-  font-size: clamp(22px, 3.5vw, 36px);
-  font-style: italic;
-  line-height: 1.3;
-  color: var(--paper);
-  margin-bottom: 36px;
-  opacity: 0.9;
-}
-
-.philosophy-body {
-  font-family: var(--sans);
-  font-size: 15px;
-  font-weight: 300;
-  color: rgba(245,242,236,0.52);
-  line-height: 1.85;
-  max-width: 600px;
-}
-
-.philosophy-body + .philosophy-body { margin-top: 16px; }
-
-.philosophy-body strong {
-  font-weight: 500;
-  color: rgba(245,242,236,0.82);
-}
-
-.aristotle-trio {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin: 48px 0;
-}
-
-.aristotle-item {
-  padding: 24px;
-  border: 1px solid rgba(245,242,236,0.08);
-  background: rgba(245,242,236,0.03);
-}
-
-.aristotle-term {
-  font-family: var(--display);
-  font-size: 20px;
-  font-style: italic;
-  color: rgba(245,242,236,0.55);
-  margin-bottom: 6px;
-}
-
-.aristotle-def {
-  font-family: var(--sans);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(245,242,236,0.25);
-  margin-bottom: 12px;
-}
-
-.aristotle-stack {
-  font-family: var(--sans);
-  font-size: 13px;
-  font-weight: 300;
-  color: rgba(245,242,236,0.45);
-  line-height: 1.6;
 }
 
 /* STACK SECTION */
 .stack-section {
   padding: 88px 64px;
-  border-bottom: 1px solid var(--rule);
+  background: var(--paper-warm);
 }
-
 .stack-inner { max-width: 860px; margin: 0 auto; }
 
 .stack-preamble {
   font-family: var(--sans);
   font-size: 15px;
   font-weight: 300;
-  color: rgba(13,12,10,0.55);
+  color: rgba(13,12,10,0.52);
   line-height: 1.78;
   max-width: 600px;
-  margin-bottom: 56px;
+  margin-bottom: 64px;
 }
-
 .stack-preamble strong {
   font-weight: 600;
-  color: rgba(13,12,10,0.8);
+  color: rgba(13,12,10,0.78);
 }
 
 .layers { display: flex; flex-direction: column; }
 
 .layer {
   display: grid;
-  grid-template-columns: 64px 1fr auto;
+  grid-template-columns: 52px 1fr 160px;
   align-items: start;
-  gap: 28px;
-  padding: 36px 0;
+  gap: 32px;
+  padding: 44px 0;
   border-bottom: 1px solid var(--rule);
   opacity: 0;
   transform: translateY(12px);
@@ -406,15 +219,15 @@ body {
   letter-spacing: 0.1em;
   padding-top: 5px;
   text-align: right;
-  color: rgba(13,12,10,0.18);
+  color: rgba(13,12,10,0.16);
 }
 
 .layer-name {
   font-family: var(--serif);
-  font-size: clamp(18px, 2.4vw, 22px);
+  font-size: clamp(18px, 2.4vw, 23px);
   font-weight: 700;
   color: var(--ink);
-  margin-bottom: 10px;
+  margin-bottom: 14px;
   line-height: 1.2;
 }
 
@@ -423,10 +236,9 @@ body {
   font-size: 15px;
   font-weight: 300;
   color: rgba(13,12,10,0.6);
-  line-height: 1.68;
-  max-width: 520px;
+  line-height: 1.75;
+  max-width: 540px;
 }
-
 .layer-consequence strong {
   font-weight: 600;
   color: rgba(13,12,10,0.85);
@@ -436,7 +248,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 8px;
+  gap: 10px;
   padding-top: 4px;
 }
 
@@ -450,195 +262,29 @@ body {
   border-radius: 100px;
   white-space: nowrap;
 }
+.status-live  { background: rgba(26,58,42,0.08);  color: var(--accent-mid); border: 1px solid rgba(26,58,42,0.15); }
+.status-pilot { background: rgba(106,58,138,0.08); color: #6a3a8a;           border: 1px solid rgba(106,58,138,0.15); }
+.status-demo  { background: rgba(154,124,58,0.08); color: var(--gold);       border: 1px solid rgba(154,124,58,0.15); }
+.status-dev   { background: rgba(58,106,138,0.08); color: #3a6a8a;           border: 1px solid rgba(58,106,138,0.15); }
 
-.status-live  { background: rgba(26,58,42,0.08); color: var(--accent-mid); border: 1px solid rgba(26,58,42,0.15); }
-.status-pilot { background: rgba(106,58,138,0.08); color: #6a3a8a; border: 1px solid rgba(106,58,138,0.15); }
-.status-demo  { background: rgba(154,124,58,0.08); color: var(--gold); border: 1px solid rgba(154,124,58,0.15); }
-.status-dev   { background: rgba(58,106,138,0.08); color: #3a6a8a; border: 1px solid rgba(58,106,138,0.15); }
-
-.procurement-flag {
+.supplier-tag {
   font-family: var(--sans);
   font-size: 9px;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: rgba(13,12,10,0.28);
-  border: 1px solid rgba(13,12,10,0.1);
   padding: 4px 10px;
   border-radius: 100px;
   white-space: nowrap;
 }
+.supplier-named { background: rgba(58,106,138,0.07); color: #3a6a8a; border: 1px solid rgba(58,106,138,0.18); }
+.supplier-open  { background: rgba(154,124,58,0.07); color: var(--gold); border: 1px solid rgba(154,124,58,0.18); }
 
 .l0 .layer-name { border-left: 3px solid var(--l0); padding-left: 14px; }
 .l1 .layer-name { border-left: 3px solid var(--l1); padding-left: 14px; }
 .l2 .layer-name { border-left: 3px solid var(--l2); padding-left: 14px; }
 .l3 .layer-name { border-left: 3px solid var(--l3); padding-left: 14px; }
 .l4 .layer-name { border-left: 3px solid var(--l4); padding-left: 14px; }
-
-/* EQUITY SECTION */
-.equity-section {
-  padding: 88px 64px;
-  border-bottom: 1px solid var(--rule);
-  background: var(--paper-warm);
-}
-
-.equity-inner { max-width: 860px; margin: 0 auto; }
-
-.equity-heading {
-  font-family: var(--serif);
-  font-size: clamp(22px, 3.5vw, 34px);
-  font-weight: 700;
-  line-height: 1.25;
-  letter-spacing: -0.015em;
-  color: var(--ink);
-  max-width: 600px;
-  margin-bottom: 36px;
-}
-
-.equity-heading em {
-  font-style: italic;
-  font-family: var(--display);
-}
-
-.equity-body {
-  font-family: var(--sans);
-  font-size: 15px;
-  font-weight: 300;
-  color: rgba(13,12,10,0.62);
-  line-height: 1.78;
-  max-width: 620px;
-}
-
-.equity-body + .equity-body { margin-top: 16px; }
-
-.equity-body strong {
-  font-weight: 600;
-  color: rgba(13,12,10,0.85);
-}
-
-/* PROCUREMENT SECTION */
-.procurement-section {
-  background: var(--ink);
-  color: var(--paper);
-  padding: 88px 64px;
-  border-bottom: 1px solid rgba(245,242,236,0.06);
-}
-
-.procurement-inner { max-width: 860px; margin: 0 auto; }
-
-.procurement-section .section-label {
-  color: rgba(245,242,236,0.22);
-}
-.procurement-section .section-label::after {
-  background: rgba(245,242,236,0.07);
-}
-
-.procurement-intro {
-  font-family: var(--serif);
-  font-size: clamp(19px, 2.8vw, 26px);
-  font-weight: 700;
-  line-height: 1.38;
-  letter-spacing: -0.015em;
-  color: var(--paper);
-  max-width: 620px;
-  margin-bottom: 52px;
-}
-
-.procurement-intro em {
-  font-style: italic;
-  font-family: var(--display);
-  color: rgba(245,242,236,0.4);
-}
-
-.procurement-items { display: flex; flex-direction: column; }
-
-.procurement-item {
-  display: grid;
-  grid-template-columns: 28px 1fr;
-  gap: 20px;
-  padding: 28px 0;
-  border-bottom: 1px solid rgba(245,242,236,0.06);
-  align-items: start;
-}
-.procurement-item:last-child { border-bottom: none; }
-
-.proc-num {
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 600;
-  color: rgba(245,242,236,0.18);
-  padding-top: 4px;
-  letter-spacing: 0.06em;
-}
-
-.proc-category {
-  font-family: var(--sans);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(245,242,236,0.28);
-  margin-bottom: 6px;
-}
-
-.proc-name {
-  font-family: var(--serif);
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--paper);
-  margin-bottom: 8px;
-}
-
-.proc-desc {
-  font-family: var(--sans);
-  font-size: 14px;
-  font-weight: 300;
-  color: rgba(245,242,236,0.45);
-  line-height: 1.68;
-  max-width: 520px;
-}
-
-/* FRAMEWORK SECTION */
-.framework-section {
-  padding: 88px 64px;
-  border-bottom: 1px solid var(--rule);
-}
-
-.framework-inner {
-  max-width: 680px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.framework-quote {
-  font-family: var(--display);
-  font-size: clamp(20px, 3.2vw, 30px);
-  font-style: italic;
-  line-height: 1.42;
-  color: var(--ink);
-  margin-bottom: 20px;
-}
-
-.framework-attr {
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(13,12,10,0.3);
-  margin-bottom: 40px;
-}
-
-.framework-response {
-  font-family: var(--sans);
-  font-size: 14px;
-  font-weight: 300;
-  color: rgba(13,12,10,0.52);
-  line-height: 1.78;
-  max-width: 520px;
-  margin: 0 auto;
-  text-align: left;
-}
 
 /* CLOSE */
 .close-section {
@@ -647,7 +293,6 @@ body {
   padding: 104px 64px;
   text-align: center;
 }
-
 .close-inner { max-width: 560px; margin: 0 auto; }
 
 .close-title {
@@ -659,7 +304,6 @@ body {
   margin-bottom: 20px;
   color: var(--paper);
 }
-
 .close-title em {
   font-style: italic;
   font-family: var(--display);
@@ -672,10 +316,8 @@ body {
   font-weight: 300;
   color: rgba(245,242,236,0.45);
   line-height: 1.75;
-  margin-bottom: 52px;
+  margin: 0 auto 52px;
   max-width: 440px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .close-contact {
@@ -684,17 +326,13 @@ body {
   color: rgba(245,242,236,0.28);
   line-height: 2.1;
 }
-
 .close-contact a {
   color: rgba(245,242,236,0.5);
   text-decoration: none;
   border-bottom: 1px solid rgba(245,242,236,0.14);
   padding-bottom: 1px;
 }
-.close-contact a:hover {
-  color: var(--paper);
-  border-color: rgba(245,242,236,0.4);
-}
+.close-contact a:hover { color: var(--paper); border-color: rgba(245,242,236,0.4); }
 
 /* FOOTER */
 footer {
@@ -714,15 +352,10 @@ footer span {
   letter-spacing: 0.06em;
 }
 
-/* ANIMATIONS */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-
-.masthead-org   { animation: fadeUp 0.6s ease both; }
-.masthead-title { animation: fadeUp 0.6s 0.1s ease both; }
-.thesis         { animation: fadeUp 0.6s 0.22s ease both; }
 
 .reveal {
   opacity: 0;
@@ -733,72 +366,28 @@ footer span {
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-  .ribbon { flex-direction: column; }
-  .ribbon-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); padding: 7px 16px; }
-  .ribbon-item:last-child { border-bottom: none; }
-
   .masthead { padding: 48px 24px 56px; }
   .masthead-org { margin-bottom: 32px; }
   .masthead-title { margin-bottom: 40px; }
   .thesis { padding-left: 20px; }
 
-  .proof-band {
-    padding: 32px 24px;
-    gap: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    row-gap: 28px;
-    column-gap: 16px;
-  }
-  .proof-divider { display: none; }
-  .proof-note { grid-column: 1 / -1; margin-left: 0; max-width: 100%; margin-top: 4px; }
-  .proof-num { font-size: 28px; }
+  .whatis-section,
+  .stack-section { padding: 52px 24px; }
 
-  .problem-section,
-  .stack-section,
-  .equity-section,
-  .framework-section,
-  .philosophy-section { padding: 52px 24px; }
-  .procurement-section { padding: 52px 24px; }
-
-  .aristotle-trio { grid-template-columns: 1fr; gap: 16px; }
-
-  .layer { grid-template-columns: 36px 1fr; gap: 14px; padding: 28px 0; }
+  .layer { grid-template-columns: 36px 1fr; gap: 16px; padding: 32px 0; }
   .layer-right { display: none; }
   .layer-num { font-size: 10px; padding-top: 4px; }
 
-  .pull-quote { padding: 24px 20px; margin: 36px 0; }
-  .pull-quote p { font-size: 16px; }
-
-  .procurement-item { gap: 14px; padding: 24px 0; }
-  .proc-name { font-size: 16px; }
-
-  .framework-inner { text-align: left; }
-  .framework-response { text-align: left; }
-
   .close-section { padding: 64px 24px; }
-  .close-contact { font-size: 11px; }
-
   footer { padding: 20px 24px; flex-direction: column; gap: 6px; text-align: center; }
 }
 
 @media (max-width: 420px) {
   .masthead-title { font-size: 36px; letter-spacing: -0.02em; }
-  .proof-band { grid-template-columns: 1fr; }
-  .proof-note { margin-top: 8px; }
-  .ribbon-item { font-size: 8.5px; letter-spacing: 0.12em; }
 }
 </style>
 </head>
 <body>
-
-<!-- POLICY RIBBON -->
-<nav class="ribbon">
-  <div class="ribbon-item">NHS 10 Year Health Plan · 2025</div>
-  <div class="ribbon-item">Neighbourhood Health Framework · March 2026</div>
-  <div class="ribbon-item">Devolution Bill · Neighbourhood Governance · 2026</div>
-  <div class="ribbon-item">43 NNHIP places · Dorset Council and NHS Dorset · Joint lead</div>
-</nav>
 
 <!-- MASTHEAD -->
 <header class="masthead">
@@ -806,92 +395,28 @@ footer span {
     <div class="masthead-org">Weymouth and Portland PCN &nbsp;·&nbsp; Dorset &nbsp;·&nbsp; Built from practice</div>
     <h1 class="masthead-title">The Neighbourhood<br><span class="italic">Health Stack</span></h1>
     <div class="thesis">
-      <p class="thesis-line bold">The neighbourhood is the smallest unit of design.</p>
-      <p class="thesis-line bold">This is what it looks like when you build from there.</p>
-      <p class="thesis-line dim">Five layers of neighbourhood health infrastructure. The foundation is free and copyable. Two procurement decisions that will determine who owns the infrastructure of the neighbourhood health system. No market surface in primary care.</p>
+      <p class="thesis-line bold">Five layers of neighbourhood health infrastructure.</p>
+      <p class="thesis-line bold">Each one unlocks the next.</p>
+      <p class="thesis-line dim">The sequence and the dependencies are the point.</p>
     </div>
   </div>
 </header>
 
-<!-- PROOF BAND -->
-<div class="proof-band">
-  <div class="proof-stat">
-    <div class="proof-num">74,000</div>
-    <div class="proof-label">patients across five GP practices</div>
-  </div>
-  <div class="proof-divider"></div>
-  <div class="proof-stat">
-    <div class="proof-num">1 in 5</div>
-    <div class="proof-label">GP appointments for non-medical reasons</div>
-  </div>
-  <div class="proof-divider"></div>
-  <div class="proof-stat">
-    <div class="proof-num">1 of 43</div>
-    <div class="proof-label">NNHIP places nationally</div>
-  </div>
-  <div class="proof-divider"></div>
-  <div class="proof-stat">
-    <div class="proof-num">L0</div>
-    <div class="proof-label">Navigation Intelligence already live</div>
-  </div>
-  <div class="proof-divider"></div>
-  <div class="proof-stat">
-    <div class="proof-num">18 mo</div>
-    <div class="proof-label">evaluating Smart Triage and AVT suppliers</div>
-  </div>
-  <p class="proof-note">High deprivation. Coastal peninsula. Low digital confidence. No new budget. No template. The conditions that make it hardest are the conditions that make it most transferable.</p>
-</div>
-
-<!-- PROBLEM -->
-<section class="problem-section">
-  <div class="problem-inner">
-    <div class="section-label reveal">The gap no current system addresses</div>
-    <h2 class="problem-heading reveal">One in five GP appointments are for <em>non-medical reasons.</em> Loneliness. Housing. Debt. Social isolation.</h2>
-    <p class="problem-body reveal">This is NHS England's own figure. It is not a clinical problem. It is a navigation problem. And it is a civic problem. People arrive at the GP because the GP is the only door they know how to find. The infrastructure that should sit between a person and their community has either never been built, or has never been connected. Every triage tool, every ambient voice platform, every patient-facing technology deployed into primary care today starts at the same moment: when a patient contacts a service.</p>
-    <p class="problem-body reveal">The space before that moment, and everything after the appointment ends, is where the people with the greatest need fall through.</p>
-
-    <div class="pull-quote reveal">
-      <p>The NHS 10 Year Plan calls for three shifts: hospital to community, analogue to digital, sickness to prevention. The Neighbourhood Health Stack is what those shifts look like when they are built as infrastructure, from the ground up, in a real neighbourhood.</p>
-    </div>
-
-    <p class="problem-body reveal">There is also a market problem. Patient activation platforms are being sold into primary care at scale. The premise is that patients need to be activated by a product. The evidence is that the people who need activation most are least likely to engage with a platform designed for people who are already engaged. <strong>The stack activates people by being the infrastructure they move through.</strong> The ones who need it most encounter it most, use it most, and learn most. That is not a feature. It is a consequence of building infrastructure that covers the whole journey.</p>
+<!-- WHAT IT IS -->
+<section class="whatis-section">
+  <div class="whatis-inner">
+    <div class="section-label reveal">What this is</div>
+    <h2 class="whatis-heading reveal">A connected sequence of infrastructure, from the space before demand to the support that follows the appointment.</h2>
+    <p class="whatis-body reveal">The Neighbourhood Health Stack is not a single product or platform. It is five connected layers of health infrastructure, built to cover the full journey a person takes through the neighbourhood health system. The layers run in sequence. Each one depends on the one before it. Together they cover the ground that no single tool, triage system, or patient platform reaches on its own.</p>
+    <p class="whatis-body reveal">The foundation layer is already live in Weymouth and Portland. It is free to replicate. The civic listening pilot is complete. Two layers require a procurement decision. <strong>The decisions made at Layers 1 and 2 shape everything that becomes possible at Layer 4.</strong> The sequence is the point. A layer deployed in one practice is a tool. Deployed across the neighbourhood, it is infrastructure.</p>
   </div>
 </section>
 
-<!-- PHILOSOPHY INTERLUDE -->
-<section class="philosophy-section">
-  <div class="philosophy-inner">
-    <h2 class="philosophy-heading reveal">What kind of knowledge does a neighbourhood need?</h2>
-    <p class="philosophy-body reveal">Aristotle distinguished three kinds of knowledge. <strong>Episteme:</strong> what is true. <strong>Techne:</strong> how to do something. <strong>Phronesis:</strong> the practical wisdom to know what the situation actually requires. Public services have built systems that are rich in episteme and strong on techne. The gap is almost always phronesis. The judgment that cannot be reduced to a rule. The knowledge that only comes from being present in a place, over time, with the people who live there.</p>
-    <p class="philosophy-body reveal">The Neighbourhood Health Stack is an attempt to build infrastructure that carries all three. Navigation Intelligence is episteme: what exists, where to go. Smart Triage and Ambient Voice Technology are techne: doing the right thing, in the right way, at the right moment. Neighbourhood Signals and Support Playlists are the architecture for phronesis: the neighbourhood developing the capacity to understand itself, and act on what it knows.</p>
-
-    <div class="aristotle-trio reveal">
-      <div class="aristotle-item">
-        <div class="aristotle-term">Episteme</div>
-        <div class="aristotle-def">Theoretical knowledge</div>
-        <div class="aristotle-stack">What exists. Where to go. L0 Navigation Intelligence. The foundation the whole stack rests on.</div>
-      </div>
-      <div class="aristotle-item">
-        <div class="aristotle-term">Techne</div>
-        <div class="aristotle-def">Practical craft</div>
-        <div class="aristotle-stack">How to route equitably. How to make the encounter fully present. L1 Smart Triage. L2 Ambient Voice.</div>
-      </div>
-      <div class="aristotle-item">
-        <div class="aristotle-term">Phronesis</div>
-        <div class="aristotle-def">Practical wisdom</div>
-        <div class="aristotle-stack">What the neighbourhood needs, before it knows to ask. L3 Signals. L4 Support Playlists.</div>
-      </div>
-    </div>
-
-    <p class="philosophy-body reveal">A democratic system that cannot develop phronesis at neighbourhood level is not just inefficient. It is not listening. The stack is an attempt to build the conditions for listening at scale, without surveillance, without market surfaces, and without asking the people who need it most to do the work of finding it.</p>
-  </div>
-</section>
-
-<!-- STACK -->
+<!-- THE FIVE LAYERS -->
 <section class="stack-section">
   <div class="stack-inner">
-    <div class="section-label reveal">Five layers. One sequence. Each one unlocks the next.</div>
-    <p class="stack-preamble reveal">The stack moves a person from the space before demand, through the clinical encounter, to navigated support on the other side. Each layer is distinct. <strong>Together they are continuous.</strong> Neighbourhood-wide deployment is what makes each layer work. A layer deployed in one practice is a tool. Deployed across the neighbourhood, it is infrastructure.</p>
+    <div class="section-label reveal">The five layers</div>
+    <p class="stack-preamble reveal">The stack moves a person from the space before demand, through the clinical encounter, to navigated support on the other side. <strong>Remove a layer or reorder the sequence, and the layers above it stop working.</strong></p>
 
     <div class="layers">
 
@@ -899,7 +424,7 @@ footer span {
         <div class="layer-num">L0</div>
         <div class="layer-body">
           <div class="layer-name">Navigation Intelligence</div>
-          <div class="layer-consequence">Live, accessible, neighbourhood-wide information about what exists and where to go. Built for utility not completeness — <strong>nothing is included because it ought to be there, only because it is genuinely useful.</strong> This is the layer that addresses the space before demand. It is live in Weymouth and Portland. It is free to replicate.</div>
+          <div class="layer-consequence">Live, accessible, neighbourhood-wide information about what exists and where to go. Built for utility, not completeness. Nothing is included because it ought to be there. Everything is included because it is genuinely useful to a real person trying to find something real. This is the layer that addresses the space before demand. It is live in Weymouth and Portland. It is free to replicate. <strong>It is also the infrastructure on which Layer 3 is built.</strong></div>
         </div>
         <div class="layer-right">
           <span class="layer-status status-live">Live</span>
@@ -910,11 +435,11 @@ footer span {
         <div class="layer-num">L1</div>
         <div class="layer-body">
           <div class="layer-name">Smart Triage</div>
-          <div class="layer-consequence">Equitable, intelligent routing to the right care, first time. Neighbourhood-wide adoption means access no longer depends on how articulate, persistent, or digitally confident you are. <strong>The equity argument is built into the layer.</strong> This is a procurement decision. The supplier becomes part of the neighbourhood health infrastructure.</div>
+          <div class="layer-consequence">Equitable, intelligent routing to the right care, first time. Access to the right pathway should not depend on how articulate, persistent, or digitally confident a patient is. Neighbourhood-wide adoption is what turns a triage tool into an access equity intervention. Eighteen months of clinical observation precede this procurement decision. <strong>The supplier becomes part of the neighbourhood health infrastructure for the long term.</strong> Clinical safety discipline and NHS alignment matter more here than innovation credentials.</div>
         </div>
         <div class="layer-right">
           <span class="layer-status status-demo">Demo stage</span>
-          <span class="procurement-flag">Procurement</span>
+          <span class="supplier-tag supplier-open">Open procurement</span>
         </div>
       </div>
 
@@ -922,11 +447,11 @@ footer span {
         <div class="layer-num">L2</div>
         <div class="layer-body">
           <div class="layer-name">Ambient Voice Technology</div>
-          <div class="layer-consequence">The clinical encounter becomes fully present. The clinician is with the patient, not the screen. Neighbourhood-wide deployment turns every consultation into structured intelligence — for the first time at this scale. <strong>The supplier relationship at L2 determines everything that becomes possible at L4.</strong> This is the most consequential procurement decision in the stack.</div>
+          <div class="layer-consequence">The clinical encounter becomes fully present. The clinician is with the patient, not the screen. Every credible platform has solved transcription accuracy. The question is what happens to the structured output after the consultation ends: how it reaches the patient, the care team, and the record. <strong>The supplier chosen at Layer 2 determines what becomes possible at Layer 4.</strong> That relationship should be chosen with that consequence in mind.</div>
         </div>
         <div class="layer-right">
           <span class="layer-status status-demo">Demo stage</span>
-          <span class="procurement-flag">Procurement</span>
+          <span class="supplier-tag supplier-named">Lexacom</span>
         </div>
       </div>
 
@@ -934,7 +459,7 @@ footer span {
         <div class="layer-num">L3</div>
         <div class="layer-body">
           <div class="layer-name">Neighbourhood Signals</div>
-          <div class="layer-consequence">The civic listening layer. Built on top of L0, it turns the navigation infrastructure into a democratic instrument. The pages people loop between, the dead ends, the drop-offs, the QR scans that cluster in specific streets: these are not analytics. <strong>They are the neighbourhood telling you where pressure is forming before it becomes demand on services.</strong> The 91-day pilot in Weymouth and Portland is complete. Three signal clusters. Zero personal data. The community is already speaking. This layer listens.</div>
+          <div class="layer-consequence">Built on top of Layer 0, the navigation infrastructure becomes a democratic instrument. The pages people loop between, the dead ends, the drop-offs, the QR scans that cluster in specific streets: these are not analytics. <strong>They are the neighbourhood telling you where pressure is forming before it becomes demand on services.</strong> The 91-day pilot in Weymouth and Portland is complete. Three signal clusters identified. Zero personal data collected.</div>
         </div>
         <div class="layer-right">
           <span class="layer-status status-pilot">Pilot complete</span>
@@ -945,7 +470,7 @@ footer span {
         <div class="layer-num">L4</div>
         <div class="layer-body">
           <div class="layer-name">Support Playlists</div>
-          <div class="layer-consequence">A calm, bespoke, sequenced set of next steps. Available before an appointment, during it, or after it. Platform agnostic. Free to patients and residents at the point of use, with no market surface in primary care. <strong>The gap between the appointment and knowing what to do next, closed.</strong> The structured output from L2 makes personalised playlists possible at scale. This is what the whole stack has been building toward.</div>
+          <div class="layer-consequence">A calm, bespoke, sequenced set of next steps. Available before an appointment, during it, or after it ends. Platform agnostic. Free to patients and residents at the point of use, with no market surface in primary care. The structured output from Layer 2 makes personalised playlists possible at scale. <strong>This is what the whole stack has been building toward. It is only possible because of what Layer 2 puts in place.</strong></div>
         </div>
         <div class="layer-right">
           <span class="layer-status status-dev">In development</span>
@@ -956,62 +481,12 @@ footer span {
   </div>
 </section>
 
-<!-- EQUITY -->
-<section class="equity-section">
-  <div class="equity-inner">
-    <div class="section-label reveal">Equity and continuity</div>
-    <h2 class="equity-heading reveal">The stack does not need a patient activation platform sitting on top of it. <em>It is the activation.</em></h2>
-    <p class="equity-body reveal">Patient activation platforms are built on an assumption: that engagement is a behaviour to be encouraged from outside. The evidence from primary care is consistent. The people with the highest need, lowest health literacy, and weakest social capital are least likely to find a platform, trust it, or persist with it. A platform that waits for engagement reproduces the inequalities it was designed to address.</p>
-    <p class="equity-body reveal">The Neighbourhood Health Stack works differently. Every layer is designed to meet people where they already are. Searching for information. Contacting a service. Sitting in a consultation. Looking for what comes next. <strong>The person with the greatest health burden encounters more of the stack, more often, and derives more from each encounter.</strong> Equity and continuity are not features added to the infrastructure. They are the consequence of building infrastructure that covers the whole journey.</p>
-    <p class="equity-body reveal">The human layer is not a feature of the stack. It is the methodology beneath it. A nurse, a psychologist, a social worker, and a philosopher — a century of combined experience of what happens when systems fail the people they were built to serve. That is what Neighbourhood CoLab CIC brings to the infrastructure. The space technology cannot replace, and too often forgets to leave.</p>
-  </div>
-</section>
-
-<!-- PROCUREMENT -->
-<section class="procurement-section">
-  <div class="procurement-inner">
-    <div class="section-label">The procurement map</div>
-    <p class="procurement-intro">Two layers require a supplier. The navigation foundation is built, owned, and free to replicate. The suppliers chosen for L1 and L2 <em>become part of the neighbourhood health system.</em> These decisions deserve the same seriousness as any other infrastructure decision.</p>
-
-    <div class="procurement-items">
-
-      <div class="procurement-item">
-        <div class="proc-num">01</div>
-        <div class="proc-body">
-          <div class="proc-category">Layer 1 · Access</div>
-          <div class="proc-name">Smart Triage</div>
-          <div class="proc-desc">The procurement category is well-established. Clinical safety discipline is not always applied consistently across the market — for a system this embedded in the neighbourhood, it must be. Eighteen months of clinical observation precede deployment. Long-term sustainability and NHS alignment matter more here than innovation credentials.</div>
-        </div>
-      </div>
-
-      <div class="procurement-item">
-        <div class="proc-num">02</div>
-        <div class="proc-body">
-          <div class="proc-category">Layer 2 · Encounter</div>
-          <div class="proc-name">Ambient Voice Technology</div>
-          <div class="proc-desc">The frontier is not transcription accuracy — every credible platform has solved that. The question is what happens to the structured output after the consultation ends: how it reaches the patient, the care team, and the record. The supplier that owns L2 shapes what is possible at L4. That relationship should be chosen with that consequence in mind.</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- FRAMEWORK -->
-<section class="framework-section">
-  <div class="framework-inner">
-    <p class="framework-quote reveal">"Beyond the foundational interventions, we will not prescribe an approach. Local government and ICBs know their local communities best."</p>
-    <p class="framework-attr reveal">NHS Neighbourhood Health Framework · March 2026</p>
-    <p class="framework-response reveal">This is what building from practice looks like. 74,000 patients in a place with high deprivation, low digital confidence, and no template. The neighbourhood is the smallest unit of design. The Framework named the destination. The work here has been mapping the route, at neighbourhood level, in alignment with everything the frameworks and the legislation are now pointing toward.</p>
-  </div>
-</section>
-
 <!-- CLOSE -->
 <section class="close-section">
   <div class="close-inner">
-    <h2 class="close-title">One neighbourhood.<br><em>Copyable everywhere.</em></h2>
-    <p class="close-body">Built from inside the system, at neighbourhood level, with the population that makes the equity argument concrete. The civic infrastructure layer is already live. If you are working on what neighbourhood health and civic infrastructure look like when they are built together, this is what it looks like in practice.</p>
-    <div class="close-contact">
+    <h2 class="close-title reveal">One neighbourhood.<br><em>Copyable everywhere.</em></h2>
+    <p class="close-body reveal">Built from inside the system, at neighbourhood level, with the population that makes the equity argument concrete. If you are working on what neighbourhood health infrastructure looks like when it is built as a sequence, this is what it looks like in practice.</p>
+    <div class="close-contact reveal">
       <div>Mark Winterburn</div>
       <div>Digital &amp; Transformation Lead &nbsp;·&nbsp; Weymouth and Portland PCN</div>
       <div style="margin-top: 10px;">
